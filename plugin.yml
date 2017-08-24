@@ -1,0 +1,10 @@
+name: MCFriends
+main: io.github.scientiist
+version: Revision  1
+author: Josh MadScientist
+commands:
+  cock:
+    permission: bsf.tele
+    default: true
+    description: Teleports you to a player specified.
+    usage: /<command> <player>
