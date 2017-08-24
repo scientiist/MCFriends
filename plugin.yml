@@ -1,10 +1,10 @@
 name: MCFriends
-main: io.github.scientiist
+main: io.github.scientiist.MCFriends
 version: Revision  1
 author: Josh MadScientist
 commands:
-  cock:
-    permission: bsf.tele
+  addfriend:
+    permission: mcfriends.add
     default: true
-    description: Teleports you to a player specified.
+    description: Adds a player as your friend
     usage: /<command> <player>
