@@ -1,5 +1,5 @@
 name: MCFriends
-main: io.github.scientiist.MCFriends
+main: io.github.scientiist.mcfriends.MCFriends
 version: Revision  1
 author: Josh MadScientist
 commands:
@@ -7,4 +7,4 @@ commands:
     permission: mcfriends.add
     default: true
     description: Adds a player as your friend
-    usage: /<command> <player>
+    usage: "Usage: /<command> <player>"

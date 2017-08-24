@@ -1,7 +1,5 @@
 package io.github.scientiist.mcfriends.commands;
 
-import java.util.List;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,22 +10,18 @@ import org.bukkit.entity.Player;
 import io.github.scientiist.mcfriends.MCFriends;
 import io.github.scientiist.mcfriends.YamlFileIO;
 
-public class AddFriend implements CommandExecutor {
+public class ToFriend implements CommandExecutor {
 	
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args) {
 		
-		
-		String command = cmd.getName().toLowerCase();
-		if (command.equals("addfriend")) {
-			
-			
+		if (cmd.getLabel().equalsIgnoreCase("tofriend")) {
 			if (!(args.length == 1)) { return false; }
 			
-			if (!(sender instanceof Player)) { 
-				sender.sendMessage(ChatColor.RED+"ERROR: Only players should use this command.");
+			if (!(sender instanceof Player)) {
+				sender.sendMessage("ERROR: Only players should use this command.");
 				return true;
 			}
 			
@@ -39,24 +33,18 @@ public class AddFriend implements CommandExecutor {
 				player.sendMessage(ChatColor.RED+"ERROR: Player not found.");
 				return true;
 			}
-			// add targetFriend to his friend list
-			YamlConfiguration config = YamlFileIO.getPlayerConfig(player);
 			
-			List<String> l = config.getStringList("friends");
-				
-			String friendUUID = targetFriend.getUniqueId().toString();
-				
-			if (l.contains(friendUUID)) {
-				player.sendMessage(ChatColor.RED+"ERROR: Player is already on your friend list.");
+			YamlConfiguration targetConf = YamlFileIO.getPlayerConfig(targetFriend);
+			if (targetConf.getBoolean("config.allowfriendteleport") != true) {
+				player.sendMessage(ChatColor.RED+"ERROR: Player does not allow friends teleporting to them.");
 				return true;
 			}
-				
-			l.add(friendUUID);
-			config.set("friends", l);
-			YamlFileIO.setPlayer(player, config);
-			player.sendMessage(ChatColor.GRAY+"You have added "+ChatColor.WHITE+targetFriend.getDisplayName()+ChatColor.GRAY+" as a friend.");	
+			
+			player.teleport(targetFriend);
+			targetFriend.sendMessage(ChatColor.WHITE+player.getDisplayName()+ChatColor.GRAY+" has teleported to you. You can disable this feature with the /friendconf command.");
 			return true;
 		}
 		return false;
 	}
+	
 }
