@@ -8,3 +8,8 @@ commands:
     default: true
     description: Adds a player as your friend
     usage: "Usage: /<command> <player>"
+  tofriend:
+    permission: mcfriends.to
+    default: true
+    description: Teleports to a friend.
+    usage: "Usage: /<command> <player>"
