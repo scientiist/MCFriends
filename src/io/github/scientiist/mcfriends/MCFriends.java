@@ -18,6 +18,8 @@ public class MCFriends extends JavaPlugin {
 		getCommand("tofriend").setExecutor(new ToFriend());
 		getCommand("friendconf").setExecutor(new FriendConf());
 		
+		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
+		
 		getDataFolder().mkdirs();
 	}
 	
