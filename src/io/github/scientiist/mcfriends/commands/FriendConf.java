@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import io.github.scientiist.mcfriends.YamlFileIO;
+
 public class FriendConf implements CommandExecutor {
 	
 
@@ -40,6 +42,8 @@ public class FriendConf implements CommandExecutor {
 						if (args[1].equalsIgnoreCase("false")) {
 							allowTP = false;
 						}
+						
+						YamlFileIO.getPlayerConfig(player);
 						
 						
 						player.sendMessage("");
