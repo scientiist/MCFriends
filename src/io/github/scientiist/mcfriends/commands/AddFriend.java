@@ -54,7 +54,8 @@ public class AddFriend implements CommandExecutor {
 			l.add(friendUUID);
 			config.set("friends", l);
 			YamlFileIO.setPlayer(player, config);
-			player.sendMessage(ChatColor.GRAY+"You have added "+ChatColor.WHITE+targetFriend.getDisplayName()+ChatColor.GRAY+" as a friend.");	
+			player.sendMessage(ChatColor.GRAY+"You have added "+ChatColor.WHITE+targetFriend.getDisplayName()+ChatColor.GRAY+" as a friend.");
+			targetFriend.sendMessage(player.getDisplayName()+ChatColor.GRAY+" has added you as a friend.");
 			return true;
 		}
 		return false;
