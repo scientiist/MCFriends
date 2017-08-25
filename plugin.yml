@@ -8,6 +8,11 @@ commands:
     default: true
     description: Adds a player as your friend
     usage: "Usage: /<command> <player>"
+  delfriend:
+    permission: mcfriends.del
+    default: true
+    description: Removes a player as your friend
+    usage: "Usage: /<command> <player>"
   tofriend:
     permission: mcfriends.to
     default: true
