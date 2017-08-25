@@ -13,3 +13,8 @@ commands:
     default: true
     description: Teleports to a friend.
     usage: "Usage: /<command> <player>"
+  friendconf:
+    permission: mcfriends.configure
+    default: true
+    description: Configure personal settings for Friends
+    usage: "Usage: /<command>"

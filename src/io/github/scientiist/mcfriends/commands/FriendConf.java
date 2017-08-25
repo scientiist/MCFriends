@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import io.github.scientiist.mcfriends.YamlFileIO;
@@ -21,8 +22,7 @@ public class FriendConf implements CommandExecutor {
 			
 			
 			if (!(sender instanceof Player)) {
-				
-				return false;
+				return true;
 			}
 			
 			Player player = (Player) sender;
@@ -30,28 +30,37 @@ public class FriendConf implements CommandExecutor {
 				player.sendMessage(ChatColor.BLUE+"MCFriends configuration: /friendconf <action> [arguments]");
 				player.sendMessage(ChatColor.WHITE+"Actions: allowteleport");
 				return true;
+				
 			} else {
 				
 				if (args[0].equalsIgnoreCase("allowteleport")) {
-						boolean allowTP;
-						if (args[1].equalsIgnoreCase("true")) {
-							allowTP = true;
+						YamlConfiguration config = YamlFileIO.getPlayerConfig(player);
+						if (args.length == 2) {
+							if (args[1].equalsIgnoreCase("true")) {
+								player.sendMessage(ChatColor.BLUE+"allowteleport"+ChatColor.GRAY+" set to true.");
+								config.set("config.allowfriendteleport", true);
+								YamlFileIO.setPlayer(player, config);
+								return true;
+								
+							}
 							
+							if (args[1].equalsIgnoreCase("false")) {
+								player.sendMessage(ChatColor.BLUE+"allowteleport"+ChatColor.GRAY+" set to false.");
+								config.set("config.allowfriendteleport", false);
+								YamlFileIO.setPlayer(player, config);
+								return true;
+							}
 						}
 						
-						if (args[1].equalsIgnoreCase("false")) {
-							allowTP = false;
-						}
 						
-						YamlFileIO.getPlayerConfig(player);
+						player.sendMessage(ChatColor.BLUE+"allowteleport: "+config.getBoolean("config.allowfriendteleport")+ChatColor.GRAY+" || VALID: true, false");
+						return true;
 						
-						
-						player.sendMessage("");
 					
-					return true;
 				}
 				
 			}
+			return true;
 		}
 		return false;
 	}

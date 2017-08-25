@@ -35,6 +35,12 @@ public class ToFriend implements CommandExecutor {
 			}
 			
 			YamlConfiguration targetConf = YamlFileIO.getPlayerConfig(targetFriend);
+			
+			if (!targetConf.getStringList("friends").contains(player.getUniqueId().toString())) {
+				player.sendMessage(ChatColor.RED+"ERROR: You are not on this player's friend list.");
+				return true;
+			}
+			
 			if (targetConf.getBoolean("config.allowfriendteleport") != true) {
 				player.sendMessage(ChatColor.RED+"ERROR: Player does not allow friends teleporting to them.");
 				return true;
