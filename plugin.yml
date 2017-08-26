@@ -23,3 +23,8 @@ commands:
     default: true
     description: Configure personal settings for Friends
     usage: "Usage: /<command>"
+  listfriends:
+    permission: mcfriends.list
+    default: true
+    description: Returns a list of your friends.
+    usage: "Usage: /<command>"

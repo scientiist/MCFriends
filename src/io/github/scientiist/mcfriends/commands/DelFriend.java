@@ -54,6 +54,7 @@ public class DelFriend  implements CommandExecutor {
 			YamlFileIO.setPlayer(player, config);
 			player.sendMessage(ChatColor.GRAY+"You have removed "+ChatColor.WHITE+targetFriend.getDisplayName()+ChatColor.GRAY+" as a friend.");
 			targetFriend.sendMessage(player.getDisplayName()+ChatColor.GRAY+" has removed you as a friend.");
+			return true;
 		}
 		return false;
 	}
